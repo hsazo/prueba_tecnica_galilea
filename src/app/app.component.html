@@ -1,0 +1,50 @@
+<section>
+    <form class="type normal" [formGroup]="profileForm"  (ngSubmit)="handleSubmit()" >
+        <label>
+          Elementos por pagina
+          <input type="number" formControlName="limit" />
+        </label>
+        <button type="submit">Aceptar</button>
+      </form>
+    <div *ngIf="loading else showPokemon">
+        cargando
+    </div>
+    <ng-template #showPokemon>
+        <mat-table [dataSource]="pokemon">
+            <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+            <mat-row *matRowDef="let myRowData; columns: columnsToDisplay" (click)="viewPokemon(myRowData)"></mat-row>
+            <ng-container matColumnDef="pokemonName">
+                <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+                <mat-cell *matCellDef="let pokemon"> {{pokemon.name}} </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="pokemonHeight">
+                <mat-header-cell *matHeaderCellDef> Altura </mat-header-cell>
+                <mat-cell *matCellDef="let pokemon"> {{pokemon.height}} </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="pokemonWeight">
+                <mat-header-cell *matHeaderCellDef> Peso </mat-header-cell>
+                <mat-cell *matCellDef="let pokemon"> {{pokemon.weight}} </mat-cell>
+              </ng-container>
+        </mat-table>
+    </ng-template>
+    <div>
+      <button class="type bug" (click)="changePage(1)">Primera</button>
+      @if (currentPage == 1) {
+
+      }
+      @else {
+        <button  class="type poison" (click)="changePage(currentPage - 1)">Anterior</button>
+      }
+      
+      <span>Pagina {{ currentPage }}</span>
+      @if (currentPage == lastPage) {
+
+      }
+      @else {
+        <button class="type psychic" (click)="changePage(currentPage + 1)">Siguiente</button>
+      }
+      
+      <button class="type dark" (click)="changePage(lastPage)">Ultima Pagina {{lastPage}}</button>
+    </div>
+    
+</section>
