@@ -13,7 +13,9 @@ Correr el siguiente comando para instalar angular
 Luego correr el siguiente comando para instalar dependencias parado en la carpeta del proyecto
 
     npm install
+
 # 4
-Por ultimmo para poder ver el proyecto en local se usa el comando
+
+Por ultimo para poder ver el proyecto en local se usa el comando
 
     ng serve --open
